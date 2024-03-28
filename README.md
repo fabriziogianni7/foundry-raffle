@@ -1,66 +1,91 @@
-## Foundry
+## Raffle
 
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
+Proveably random Lottery contract. Done following this amazing [course](https://updraft.cyfrin.io/courses/foundry/smart-contract-lottery/recap) from [Cyfrin](https://updraft.cyfrin.io/)!
 
-Foundry consists of:
+## What does it do
 
--   **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
--   **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
--   **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
--   **Chisel**: Fast, utilitarian, and verbose solidity REPL.
+This contract is a Raffle contract. people can buy tickets and participate to win the raffle.
 
-## Documentation
+## Tools
 
-https://book.getfoundry.sh/
+It uses Chainlink [VRF](https://docs.chain.link/vrf) and [Automation](https://automation.chain.link/).
 
-## Usage
+## Patterns
 
-### Build
+I followed the following code layout:
 
-```shell
-$ forge build
+```
+// Layout of Contract:
+// version
+// imports
+// errors
+// interfaces, libraries, contracts
+// Type declarations
+// State variables
+// Events
+// Modifiers
+// Functions
+
+// Layout of Functions:
+// constructor
+// receive function (if exists)
+// fallback function (if exists)
+// external
+// public
+// internal
+// private
+// internal & private view & pure functions
+// external & public view & pure functions
 ```
 
-### Test
+Using [CEI pattern](https://fravoll.github.io/solidity-patterns/checks_effects_interactions.html) for writing functions!
 
-```shell
-$ forge test
+Done some minimal Unit and integration tests.
+
+## How To Run Locally
+
+Install dependencies:
+
+```
+make install
 ```
 
-### Format
+Build project:
 
-```shell
-$ forge fmt
+```
+make build
 ```
 
-### Gas Snapshots
+Run test locally:
 
-```shell
-$ forge snapshot
+```
+make run-test
 ```
 
-### Anvil
+Run test on Sepolia:
 
-```shell
-$ anvil
+```
+make test-sepolia
 ```
 
-### Deploy
+Deploy on Anvil:
 
-```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
+```
+# On another terminal run
+anvil
+# then run
+make deploy-anvil
 ```
 
-### Cast
+Deploy on Sepolia:
 
-```shell
-$ cast <subcommand>
+```
+# then run
+make deploy-sepolia
 ```
 
-### Help
+## Contract
 
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
-```
+Here is the deployed and verified contract:
+
+[0xa612988B15f427b8FFAD62828C1A854Ad57a1d4b](https://sepolia.etherscan.io/address/0xa612988b15f427b8ffad62828c1a854ad57a1d4b)
